@@ -16,26 +16,33 @@
 
 ### -> Reflection 
 
-#### 1. In Unary RPC, the client sends a single request and receives a single response. This is handy for tasks like fetching data from a database or executing actions on a server.
+#### 1. What are the key differences between unary, server streaming, and bi-directional streaming RPC (Remote Procedure Call) methods, and in what scenarios would each be most suitable?
+- In Unary RPC, the client sends a single request and receives a single response. This is handy for tasks like fetching data from a database or executing actions on a server.
 - Server streaming RPC involves the client sending a request and getting a continuous stream of data in response, useful for real-time data like weather updates or stock prices.
 - Bi-directional streaming RPC allows both client and server to exchange data streams, making it ideal for applications like chat apps or real-time collaborative software.
 
-#### 2. When it comes to securing gRPC services, the go-to technologies are TLS/SSL and JWT. 
+#### 2. What are the potential security considerations involved in implementing a gRPC service in Rust, particularly regarding authentication, authorization, and data encryption?
+- When it comes to securing gRPC services, the go-to technologies are TLS/SSL and JWT. 
 - TLS/SSL encrypts data between client and server, while JWT (or similar token-based methods) verifies the identity of clients accessing the service.
 
-#### 3. Bi-directional streaming, while powerful, brings along concurrency challenges like race conditions and deadlocks. 
+#### 3. What are the potential challenges or issues that may arise when handling bidirectional streaming in Rust gRPC, especially in scenarios like chat applications?
+- Bi-directional streaming, while powerful, brings along concurrency challenges like race conditions and deadlocks. 
 - Managing states becomes crucial, especially in scenarios like chat apps where sessions track clients' interactions.
 
-#### 4. `ReceiverStream` plays well with tokio, a popular choice for asynchronous Rust applications. 
+#### 4. What are the advantages and disadvantages of using the tokio_stream::wrappers::ReceiverStream for streaming responses in Rust gRPC services?
+- `ReceiverStream` plays well with tokio, a popular choice for asynchronous Rust applications. 
 - However, integrating it with other asynchronous crates might be cumbersome if tokio isn't in use.
 
-#### 5. Splitting server and client codebases into separate functionalities (like payment, transactions, or chat) and further organizing them based on the separation of concerns principle can enhance maintainability. 
+#### 5. In what ways could the Rust gRPC code be structured to facilitate code reuse and modularity, promoting maintainability and extensibility over time?
+- Splitting server and client codebases into separate functionalities (like payment, transactions, or chat) and further organizing them based on the separation of concerns principle can enhance maintainability. 
 - Refactoring for reusability, adding tests, robust error handling, and thorough documentation strengthen the codebase for future development.
 
-#### 6. Essential functionality like request processing, input validation, and error handling, especially for unexpected requests, needs implementation. 
+#### 6.  In the __MyPaymentService__ implementation, what additional steps might be necessary to handle more complex payment processing logic?
+- Essential functionality like request processing, input validation, and error handling, especially for unexpected requests, needs implementation. 
 - Integration with third-party payment APIs like Stripe is also necessary for processing payments.
 
-#### 7. gRPC's appeal lies in its use of HTTP/2, leveraging features like multiplexing, header compression, and binary encoding. 
+#### 7. What impact does the adoption of gRPC as a communication protocol have on the overall architecture and design of distributed systems, particularly in terms of interoperability with other technologies and platforms?
+- gRPC's appeal lies in its use of HTTP/2, leveraging features like multiplexing, header compression, and binary encoding. 
 - It also adopts Protocol Buffers (protobuf) for serialization, offering faster and lighter data exchange compared to JSON.
 - Moreover, gRPC tooling can auto-generate type-safe APIs across multiple languages, enhancing developer productivity and interoperability.
 
